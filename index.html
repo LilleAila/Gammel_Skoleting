@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta charset="utf-8">
+	<meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Skoleting</title>
+	<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="w3.css">
+	<link rel="icon" type="image/png" href="skoleting.png">
+  <link rel="apple-touch-icon" type="image/png" href="skoleting.png">
+</head>
+
+<body id="body">
+	<script src="jquery-3.4.1.min.js">
+	</script>
+
+
+	<div id="login" style="display:none;">
+  <button onclick = "logg_ut()" id = "loginbtn">Logg ut</button>
+  <div w3-include-html="skoleting.txt"></div>
+</div>
+<script>
+  function logg_ut() {
+    $("#base64").css("display","block");
+    $(".footer").css("display","block");
+    $("#login").css("display","none");
+    $("#uname").val("");
+    $("#psw").val("");
+  }
+
+
+  function encodee() {
+      var kod = $("#inputt").val();
+      $("#outputt").val(btoa(kod));
+  }
+  
+  
+  function decodee() {
+      var dekod = $("#inputt2").val();
+      $("#outputt2").val(atob(dekod));
+  }
+
+
+
+</script>
+        
+
+
+
+
+        <div id = "h111" style = "display:none">
+        <textarea style = "width:90%;height:500px" placeholder="Skriv her"></textarea>
+        <br/><br/><br/><br/><br/><br/>
+        </div>
+
+        <div id = "hjem">
+            <img src = "skoleting.png" style = "width:50%;cursor:default;" class="rotate" id="logopng">
+            <br/><br/><br/><br/><br/><br/>
+        </div>
+
+        <div id = "base64">
+
+              <div id = "password">
+                <label for="uname">Brukernavn:</label> <br/>
+                <input type = "text" id = "uname" name = "uname">
+                <br/>
+                <label for="psw">Passord:</label> <br/>
+                <input type = "password" id = "psw" name = "psw">
+                <br/>
+                <button onclick = "psw()">Logg inn</button>
+              </div>
+
+
+              <script>
+                function psw() {
+                  if ($("#uname").val() == "QnJ1a2VybmF2bg=="  &&  $("#psw").val() == "UGFzc29yZA==") {
+                    $("#base64").css("display","none");
+                    $(".footer").css("display","none");
+                    $("#login").css("display","block");
+                  }
+
+                  else {
+                    alert("Feil brukernavn eller passord.")
+                  }
+                }
+              </script>
+
+
+              <br/><br/><br/>
+
+
+              <div id = "Kod">
+                  <input id = "input" type = "text" style = "height:50px;width:200px;">
+                  <input id = "output" type = "text" style = "height:50px;width:200px;" readonly>
+                  <button onclick = "encode()" style = "width:150px;height:50px;">Kod</button>
+              </div>
+              <br/>
+              <div id = "Dekod">
+                  <input id = "input2" type = "text" style = "height:50px;width:200px;">
+                  <input id = "output2" type = "text" style = "height:50px;width:200px;" readonly>
+                  <button onclick = "decode()" style = "width:150px;height:50px;">Dekod</button>
+              </div>
+              <br/>
+              <div id = "fildekod">
+                <div>
+                    <div>
+                        <label for="filePicker">Velg eller dra en fil:</label><br>
+                        <input type="file" id="filePicker">
+                    </div>
+                    <div>
+                        <textarea id="base64textarea" placeholder="Base64 kommer her" cols="40" rows="15" readonly></textarea>
+                    </div>
+                </div>
+              </div>
+              <br/><br/><br/><br/><br/><br/>
+              <script>
+              function encode() {
+                  var kod = $("#input").val();
+                  $("#output").val(btoa(kod));
+              }
+              
+              
+              function decode() {
+                  var dekod = $("#input2").val();
+                  $("#output2").val(atob(dekod));
+              }
+
+
+              var handleFileSelect = function(evt) {
+                var files = evt.target.files;
+                var file = files[0];
+
+                if (files && file) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(readerEvt) {
+                        var binaryString = readerEvt.target.result;
+                        document.getElementById("base64textarea").value = btoa(binaryString);
+                    };
+
+                    reader.readAsBinaryString(file);
+                }
+            };
+
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                document.getElementById('filePicker').addEventListener('change', handleFileSelect, false);
+            } else {
+                alert('The File APIs are not fully supported in this browser.');
+            }
+</script>
+        </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div class="footer" id="foot">
+        <img class = "img" src = "meny.png" style = "height:100px;width:100px;float:left;" onclick = '$("#base64").css("display","none");$("#hjem").css("display","none");$("#meny").css("display","block");$("#h111").css("display","none");$("#foot").css("display", "none")' title="Åpne meny">
+
+</div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div id = "meny">
+            <div>
+            <img id ='menuImgg' src = "lukk.png" onclick = '$("#hjem").css("display","block");$("#meny").css("display","none");$("#base64").css("display","none");$("#foot").css("display", "block");' style = "height:100px;width:100px;" onmouseover="onHoverr();" onmouseout="offHoverr();" title="Lukk menyen">
+            <img id='menuImg' src="last-inn.png" width="100px height=100px"
+onmouseover="onHover();" onmouseout="offHover();" onClick="window.location.reload();" style = "height:100px;width:100px;" title="Last inn på nytt">
+            <button onclick='$("*").not("body").toggleClass("hue");' class="img">1qwrfresg</button>
+            </div>
+            <br/>
+            
+<center>
+            <!--<select id="ddlTheme" class="img" onchange="setColorCookie()" title="Velg bakgrunnsfarge">
+                <option value="Select Color">Velg Bakgrunnsfarge</option>
+                <option value="#ffffff" style = "background-color:#ffffff">Hvit</option>
+                <option value="red" style = "background-color:red">Rød</option>
+                <option value="green" style = "background-color:green">Grønn</option>
+                <option value="blue" style = "background-color:blue">Blå</option>
+                <option value="#00ff00" style = "background-color:#00ff00">Lime</option>
+                <option value="#00ddff" style = "background-color:#00ddff">Lyseblå</option>
+                <option value="#fff000" style = "background-color:#fff000">Gul</option>
+                <option value="#ff00ee" style = "background-color:#ff00ee">Rosa</option>
+                <option value="#a200ff" style = "background-color:#a200ff">Lilla</option>
+                <option style = "background-color:#7aa633" value="#7aa633">Mørk grønn</option>
+            </select>-->
+
+            <input class="img" type="color" value="#00ff00" id="color" style="cursor:pointer;">
+
+
+            
+</center>
+            
+            
+            
+            <script type="text/javascript">
+                /*window.onload = function ()
+                {
+                    if (document.cookie.length != 0)
+                    {
+                        var nameValueArray = document.cookie.split("=");
+                        document.getElementById("ddlTheme").value = nameValueArray[1];
+                        $("body").css("background-color",nameValueArray[1]);
+                        $("#divvv").css("background-color",nameValueArray[1]);
+                        $("select").css("background-color",nameValueArray[1]);
+                        $("#loginbtn").css("background-color",nameValueArray[1]);
+                    }
+                }
+
+                function setColorCookie()
+                {
+                    var selectedValue = document.getElementById("ddlTheme").value;
+                    if (selectedValue != "Select Color")
+                    {
+                        $("body").css("background-color",selectedValue);
+                        $("#divvv").css("background-color",selectedValue);
+                        $("select").css("background-color",selectedValue);
+                        $("#loginbtn").css("background-color",selectedValue);
+                        document.cookie = "color=" + selectedValue +
+                                        ";expires=Wed, 5 Aug 2099 01:00:00 UTC;";
+                    }
+                }*/
+
+
+                $("#color").change(function(){
+                    var clr = $(this).val();
+                    $("body").css("background-color",clr);
+                    setCookie("color", clr);
+                    var clrfarge1 = getCookie("color").slice(1, 7);
+                    var clrfarge2 = changeHue(clrfarge1, 40);
+                    $("#foot").css("background-color", clrfarge2);
+                });
+
+                window.onload = function () {
+                  if (document.cookie.length != 0)
+                  {
+                    document.getElementById("color").value = getCookie("color");
+                    $("body").css("background-color", getCookie("color"));
+                    //$(".footer").style({background:linear-gradient(to top, #ffff00 0%, getCookie("color") 100%)});
+                    //var clrfarge = getCookie("color")
+                    //document.getElementById("foot").style.background = linear-gradient(to top, #ffff00 0%, clrfarge 100%);
+                    var clrfarge3 = getCookie("color").slice(1, 7);
+                    var clrfarge4 = changeHue(clrfarge3, 40);
+                    $("#foot").css("background-color", clrfarge4);
+                  }
+                }
+            </script>
+
+            
+            
+            
+            <br/>
+            <br/>
+            <h3>Skole:</h3>
+            
+            <img class = "img" src = "its.png" style = "height:100px;width:100px;" onclick = 'window.open("https://bergen.itslearning.com/")' title="Itslearning">
+                
+            
+                
+            <img class = "img" src = "salaby.png" style = "width:200px;height:100px;" onclick="window.open('https://www.salaby.no/')" title="Salaby">
+                
+            <img class = "img" src = "multismart.png" style = "width:100px;height:100px;" onclick="window.open('https://multi.smartoving.no/')" title="Multi smart øving">
+                
+            <img class = "img" src = "multinett.png" style = "width:150px;height:100px;" onclick="window.open('https://podium.gyldendal.no/multi-nettoppgaver')" title="Multi nettoppgaver">
+                
+            <img class = "img" src = "spiroo.png" style = "width:100px;height:100px;" onclick="window.open('https://www.spiroo.no/#/section/grs?trinn=6')" title="Spiroo">
+                
+            <img class = "img" src = "lesemester.png" style = "width:100px;height:100px" onclick="window.open('https://lesemeister.no/')" title="Lesemester">
+
+            <img class = "img" src = "campus.png" style = "width:100px;height:100px" onclick="window.open('https://campus.inkrement.no/')" title="Campus inkrement">
+
+            <img class = "img" src = "askiraski.png" style = "width:100px;height:100px" onclick="window.open('https://app.askiraski.no/login')" title="Aski raski">
+            <img class="img" src="yt.png" style="width:150px;height:100px;" onclick="window.open('https://www.youtube.com/')" title="YouTube">
+            <img class="img" src="geogebra.png" style="width:100px;height:100px;" onclick="window.open('https://geogebra.org/classic')" title="GeoGebra">            
+
+
+            <img class = "img" src = "meet.png" style = "height:100px;width:100px;" onclick="window.open('https://meet.google.com/?authuser=1')" title="Google meet">
+            
+            <img class = "img" src = "google.png" style = "width:100px;height:100px;" onclick="window.open('https://google--lilleaila.repl.co/')" title="Google">
+
+
+
+
+
+            <br/>
+            <h3>Andre ting:</h3>
+            
+
+            <img class = "img" src = "base64.png" style = "height:100px;width:100px" onclick = '$("#base64").css("display","block");$("#meny").css("display","none");$("#hjem").css("dislpay","none");$("#foot").css("display", "block")' title="Base64">
+
+            <img class = "img" src = "rediger.png" style = "width:100px;height:100px" onclick="rediger()" title="Rediger side">
+
+            <img class = "img" src = "tekst.png" style = "width:100px;height:100px" onclick=';$("#meny").css("display","none");$("#h111").css("display","block");$("#foot").css("display", "block")' title="Rediger tekst">
+
+
+            <img src="WYSIWYG.png" class="img" style="width:100px;height:100px;" onclick="window.open('http://skoleting.com/wysiwyg/')"
+
+
+            <br/>
+
+
+            <h3>Spill:</h3>
+        <img class = "img" src = "trex.png" style = "height:100px;width:100px" onclick = 'window.open("trex/index.html")' title="Google T-rex">
+        <img class = "img" src = "minecraft.png" style = "height:100px;width:100px" onclick = 'window.open("https://classic.minecraft.net/")' title="Google T-rex">
+
+            <br/>
+
+
+            
+
+        
+            <br/><br/><br/><br/><br/><br/>
+    </div>
+        
+        <script>
+
+            
+            
+            
+            
+                    
+        function onHover()
+{
+    $("#menuImg").attr('src', 'last-ut.png');
+}
+
+function offHover()
+{
+    $("#menuImg").attr('src', 'last-inn.png');
+}
+            
+            
+            
+            
+            
+            function onHoverr()
+{
+    $("#menuImgg").attr('src', 'lukkk.png');
+}
+
+function offHoverr()
+{
+    $("#menuImgg").attr('src', 'lukk.png');
+}
+            
+            
+            
+
+function rediger()
+{
+  if (document.body.contentEditable == "true" && document.designMode == "on") {
+    document.body.contentEditable = "false";
+    document.designMode = "off";
+  }
+
+  else {
+    document.body.contentEditable = "true";
+    document.designMode = "on";
+  }
+} 
+
+;(function () {
+    var src = 'eruda.js';
+    if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+    document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+})();
+        </script>
+        <script src="w3.js"></script>
+        <script>
+          w3.includeHTML();
+          function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+          }
+          sleep(4050).then(() => { 
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+          });
+        </script>
+    </body>
+</html>
+
+
+
+<!--    document.body.contentEditable = "true"; document.designMode = "on"    -->
